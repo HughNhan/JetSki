@@ -1,0 +1,148 @@
+{
+    "nodes": [
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:d3:58:60",
+                "b4:96:91:d3:58:61",
+                "08:c0:eb:ad:3e:d0",
+                "08:c0:eb:ad:3e:d1",
+                "5c:6f:69:57:5d:21"
+            ],
+            "memory": "1024",
+            "name": "e31-h23-000-r650.rdu2.scalelab.redhat.com",
+            "pm_addr": "mgmt-e31-h23-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        },
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:d1:f7:da",
+                "b4:96:91:d1:f7:db",
+                "08:c0:eb:35:16:12",
+                "08:c0:eb:35:16:13",
+                "5c:6f:69:57:b8:51"
+            ],
+            "memory": "1024",
+            "name": "e29-h23-000-r650.rdu2.scalelab.redhat.com",  
+            "pm_addr": "mgmt-e29-h23-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        },
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:cc:e7:ec",
+                "b4:96:91:cc:e7:ed",
+                "08:c0:eb:35:14:f6",
+                "08:c0:eb:35:14:f7",
+                "5c:6f:69:56:f9:a1"
+            ],
+            "memory": "1024",
+            "name": "e29-h25-000-r650.rdu2.scalelab.redhat.com",
+            "pm_addr": "mgmt-e29-h25-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        },
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:cc:e5:7e",
+                "b4:96:91:cc:e5:7f",
+                "08:c0:eb:35:0c:e2",
+                "08:c0:eb:35:0c:e3",
+                "5c:6f:69:56:a5:e1"
+            ],
+            "memory": "1024",
+            "name": "e29-h22-000-r650.rdu2.scalelab.redhat.com", 
+            "pm_addr": "mgmt-e29-h22-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        },
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:f4:1b:cc",
+                "b4:96:91:f4:1b:cd",
+                "b8:3f:d2:23:e3:a0",
+                "b8:3f:d2:23:e3:a1",
+                "84:16:0c:b4:8b:c1"
+            ],
+            "memory": "1024",
+            "name": "d19-h26-000-r650.rdu2.scalelab.redhat.com",
+            "pm_addr": "mgmt-d19-h26-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        },
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:f4:16:6c",
+                "b4:96:91:f4:16:6d",
+                "b8:3f:d2:24:5d:28",
+                "b8:3f:d2:24:5d:29",
+                "00:62:0b:26:32:91"
+            ],
+            "memory": "1024",
+            "name": "d19-h28-000-r650.rdu2.scalelab.redhat.com",
+            "pm_addr": "mgmt-d19-h28-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        },
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:cc:e6:14",
+                "b4:96:91:cc:e6:15",
+                "08:c0:eb:ad:1d:90",
+                "08:c0:eb:ad:1d:91",
+                "5c:6f:69:57:50:e1"
+            ],
+            "memory": "1024",
+            "name": "e29-h26-000-r650.rdu2.scalelab.redhat.com",
+            "pm_addr": "mgmt-e29-h26-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        },
+        {
+            "arch": "x86_64",
+            "cpu": "2",
+            "disk": "20",
+            "mac": [
+                "b4:96:91:cb:f2:2a",
+                "b4:96:91:cb:f2:2b",
+                "08:c0:eb:ad:1e:5c",
+                "08:c0:eb:ad:1e:5d",
+                "5c:6f:69:75:c5:81"
+            ],
+            "memory": "1024",
+            "name": "e31-h22-000-r650.rdu2.scalelab.redhat.com",
+            "pm_addr": "mgmt-e31-h22-000-r650.rdu2.scalelab.redhat.com",
+            "pm_password": "rdu2@3039",
+            "pm_type": "pxe_ipmitool",
+            "pm_user": "quads"
+        }
+    ]
+}

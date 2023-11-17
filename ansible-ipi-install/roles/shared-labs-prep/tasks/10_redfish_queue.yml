@@ -5,7 +5,7 @@
       register: clear_jobs
       until: clear_jobs is succeeded
       retries: 3
-      delay: 30
+      delay: 60
   rescue:
     - name: Rescue - Reset iDRAC - {{ item }}
       shell: |

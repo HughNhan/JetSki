@@ -82,7 +82,7 @@
               register: wait_for_prov_idrac
               until: wait_for_prov_idrac is succeeded
               retries: 20
-              delay: 30
+              delay: 60
 
             - name: Badfish rescue to set Foreman style interface order
               shell: |

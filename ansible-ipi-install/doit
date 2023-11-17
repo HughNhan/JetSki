@@ -1,0 +1,7 @@
+# Usage: doit LABEL 
+
+LOG=$1-$(date "+%Y-%m-%d-%T").log
+
+ansible-playbook   --skip-tags bootorder -i inventory/jetski/hosts playbook-jetski.yml  2>&1 | tee -a deploy-$LOG
+
+
