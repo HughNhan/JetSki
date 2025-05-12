@@ -45,9 +45,9 @@
           shell: podman run hammercli hammer -u {{ cloud_name }} -p {{ lab_ipmi_password }}  host update --name {{ provisioner_hostname }} --build 1 --operatingsystem 'RHEL {{ rhel_foreman_version }}' --overwrite 1
           when: lab_name == "scale"
 
-        - name: update host to install new os (alias lab) in container
+        - name: update host to install new os (perfscale lab) in container
           shell: podman run hammercli hammer -u {{ cloud_name }} -p {{ lab_ipmi_password }}  host update --name {{ provisioner_hostname }} --build 1 --operatingsystem 'RHEL {{ rhel_foreman_version }}' --medium 'rhel_local' --partition-table 'ALIAS-Partition' --overwrite 1
-          when: lab_name == "alias"
+          when: lab_name == "perfscale"
 
         - name: Check power state of provisioner (Dell and in container)
           shell: |
@@ -110,9 +110,9 @@
           shell: hammer -u {{ cloud_name }} -p {{ lab_ipmi_password }} -s {{ foreman_url }} host update --name {{ provisioner_hostname }} --build 1 --operatingsystem 'RHEL {{ rhel_foreman_version }}' --overwrite 1
           when: lab_name == "scale"
 
-        - name: update host to install new os (alias lab)
+        - name: update host to install new os (perfscale lab)
           shell: hammer -u {{ cloud_name }} -p {{ lab_ipmi_password }} -s {{ foreman_url }} host update --name {{ provisioner_hostname }} --build 1 --operatingsystem 'RHEL {{ rhel_foreman_version }}' --medium 'rhel_local' --partition-table 'ALIAS-Partition' --overwrite 1
-          when: lab_name == "alias"
+          when: lab_name == "perfscale"
 
         - name: Check power state of provisioner (Dell and not in container)
           shell: |

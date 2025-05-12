@@ -4,6 +4,7 @@
     /root/clean-interfaces.sh --nuke
   become: true
   ignore_errors: true
+  when: false   # HN rhel9 issue
 
 - name: Regather facts for updated interfaces
   setup:
@@ -80,8 +81,8 @@
       when: 
         - master_types | unique != [provisioner_type] or 'r640' in master_fqdns[0].split('.')[0].split('-')
   vars:
-    lab_vars: "{{ (lab_name == 'scale') | ternary(scale, alias) }}"
-  when: lab_name in ['scale', 'alias']
+    lab_vars: "{{ (lab_name == 'scale') | ternary(scale, perfscale) }}"
+  when: lab_name in ['scale', 'perfscale']
 
 - name: set disabled nics to lab_pub_nics
   set_fact:

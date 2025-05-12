@@ -4,9 +4,10 @@ yum_packages:
   - dnsmasq
   - podman
   - ipmitool
-  - iptables-services
+  - iptables-nft-services
   - git
   - python3
+  - python3-pyghmi
   - python3-dns
   - python3-yaml
   - python3-urllib3

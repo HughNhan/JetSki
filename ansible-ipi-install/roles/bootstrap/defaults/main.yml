@@ -2,10 +2,15 @@
 rhel_required_version: 8.9
 rhel_foreman_version: 8.2
 dns_server: "{{ '10.11.5.19' if lab_name == 'scale' else '10.19.96.1' }}"
-alias:
-  lab_url: "http://quads.alias.bos.scalelab.redhat.com"
+perfscale:
+  lab_url: "http://wiki.rdu3.labs.perfscale.redhat.com"
   machine_types:
     dell:
+      r750:
+        pub_nic: eno8303
+        prov_nic: ens3f0
+        bm_nic: ens6f0
+        bm_nic_2: ens6f1
       740xd: 
         pub_nic: eno3
         prov_nic: eno2

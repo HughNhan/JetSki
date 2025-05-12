@@ -22,13 +22,13 @@
 - name: Download ocpinv.json
   block:
     - uri:
-        url: "{{ alias.lab_url }}/instack/{{ cloud_name }}_ocpinventory.json"
+        url: "{{ perfscale.lab_url }}/instack/{{ cloud_name }}_ocpinventory.json"
         return_content: yes
       register: response
     
     - set_fact:
         ocpinv_content: "{{ response.json }}"
-  when: lab_name == "alias"
+  when: lab_name == "perfscale"
 
 - name: Download ocpinv.json
   block:
@@ -181,12 +181,12 @@
         - "{{ worker_fqdns }}"
       when: lab_name == 'scale' and item.split('.')[0].split('-')[3] in lab_vars['machine_types']['dell']
 
-    - name: Set worker node dells (alias)
+    - name: Set worker node dells (perfscale)
       set_fact:
         dell_nodes: "{{ dell_nodes + [ item ] }}"
       with_items:
         - "{{ worker_fqdns }}"
-      when: lab_name == 'alias' and item.split('.')[0].split('-')[2] in lab_vars['machine_types']['dell']
+      when: lab_name == 'perfscale' and item.split('.')[0].split('-')[2] in lab_vars['machine_types']['dell']
 
     - name: Set worker node supermicros (scale)
       set_fact:
@@ -195,16 +195,16 @@
         - "{{ worker_fqdns }}"
       when: lab_name == 'scale' and item.split('.')[0].split('-')[3] in lab_vars['machine_types']['supermicro']
 
-    - name: Set worker node supermicros (alias)
+    - name: Set worker node supermicros (perfscale)
       set_fact:
         supermicro_nodes: "{{ supermicro_nodes + [ item ] }}"
       with_items:
         - "{{ worker_fqdns }}"
-      when: lab_name == 'alias' and item.split('.')[0].split('-')[2] in lab_vars['machine_types']['supermicro']
+      when: lab_name == 'perfscale' and item.split('.')[0].split('-')[2] in lab_vars['machine_types']['supermicro']
 
   vars:
-    lab_vars: "{{ (lab_name == 'scale') | ternary(scale, alias) }}"
-  when: lab_name in ['scale', 'alias']
+    lab_vars: "{{ (lab_name == 'scale') | ternary(scale, perfscale) }}"
+  when: lab_name in ['scale', 'perfscale']
   
 - name: set ocp_nondeplopyed_node_content
   set_fact:
