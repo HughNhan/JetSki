@@ -47,18 +47,18 @@ prov_ip=172.22.0.3
 #webserver_caching_port=8080
 
 # (Optional) Enable IPv6 addressing instead of IPv4 addressing on both provisioning and baremetal network
-ipv6_enabled=False
+ipv6_enabled=True
 
 # (Optional) When ipv6_enabled is set to True, but want IPv4 addressing on provisioning network
 # Default is false.
-#ipv4_provisioning=True
+ipv4_provisioning=True
 
 # (Optional) When ipv6_enabled is set to True, but want IPv4 addressing on baremetal network
-#ipv4_baremetal=True
+ipv4_baremetal=False
 
 # (Optional) When ipv6_enabled is set to True, but want dual-stack for baremetal network
 # Only one of ipv4_baremetal and dualstack_baremetal can be true
-#dualstack_baremetal=False
+dualstack_baremetal=True
 
 # (Optional) A list of clock servers to be used in chrony by the masters and workers
 clock_servers=["clock.redhat.com"]
@@ -81,10 +81,10 @@ clock_servers=["clock.redhat.com"]
 # deployments. The variables below can be used to extend those timeouts.
 
 # (Optional) Increase bootstrap process timeout by N iterations.
-increase_bootstrap_timeout=2
+increase_bootstrap_timeout=10
 
 # (Optional) Increase install process timeout by N iterations.
-increase_install_timeout=2
+increase_install_timeout=10
 
 # (Optional) Disable RedFish inspection to intelligently choose between IPMI or RedFish protocol.
 # By default this feature is enabled and set to true. Uncomment below to disable and use IPMI.
@@ -110,7 +110,7 @@ redfish_inspection=false
 ovn_hybird_plugin=true
 
 # (Optional) Enable local gateway mode with OVN
-ovn_local_gateway=true
+ovn_local_gateway=True
 
 # (Optional) Enable SCTP in the cluster
 sctp=false
@@ -179,6 +179,9 @@ bootmode=legacy
 # Root Device Hint values are case sensitive. If incorrect case given, entry omitted from install-config.yaml
 # root_device_hint="deviceName"
 # root_device_hint_value="/dev/sda"
+
+root_device_hint= deviceName
+root_device_hint_value= "/dev/disk/by-path/pci-0000:67:00.0-scsi-0:2:0:0"
 
 # Registry Host
 #   Define a host here to create or use a local copy of the installation registry

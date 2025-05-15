@@ -158,24 +158,69 @@
 
 - name: Dell Boot Order tasks (Dell)
   block:
-    - include_tasks: 10_redfish_queue.yml
-      with_items:
-        - "{{ dell_nodes }}"
-
-    - name: Wait for iDrac to be responsive (check via --check-boot for Dell) 
-      shell: "{{ badfish_podman_cmd }}{{ item }} --check-boot"
-      with_items:
-        - "{{ dell_nodes }}"
-      register: wait_for_idrac
-      until: wait_for_idrac is succeeded
-      retries: 10
-      delay: 30
-      ignore_errors: true
-
-    - include_tasks: 20_set_director_mode.yml
-      with_items:
-        - "{{ dell_nodes }}"
-
+    # Set fact to categorize Dell servers
+    - set_fact:
+        dell_r650_nodes: "{{ dell_nodes | select('search', '-r650') | list }}"
+        dell_other_nodes: "{{ dell_nodes | reject('search', '-r650') | list }}"
+    
+    # Process non-R650 nodes with Badfish
+    - block:
+        - include_tasks: 10_redfish_queue.yml
+          with_items:
+            - "{{ dell_other_nodes }}"
+        
+        - name: Check iDRAC responsiveness in parallel (non-R650)
+          shell: "{{ badfish_podman_cmd }}{{ item }} --check-boot"
+          async: 300
+          poll: 0
+          with_items:
+            - "{{ dell_other_nodes }}"
+          register: idrac_checks
+      
+        - name: Wait for all iDRAC checks to complete (non-R650)
+          async_status:
+            jid: "{{ item.ansible_job_id }}"
+          register: job_result
+          until: job_result.finished
+          retries: 30
+          delay: 10
+          with_items: "{{ idrac_checks.results }}"
+          ignore_errors: true
+      
+        - include_tasks: 20_set_director_mode.yml
+          with_items:
+            - "{{ dell_other_nodes }}"
+      when: dell_other_nodes | length > 0
+    
+    # Process R650 nodes with RACADM
+    - block:
+        - name: Clear job queue for R650 using RACADM
+          shell: |
+            sshpass -p "{{ lab_ipmi_password }}" ssh -o StrictHostKeyChecking=no {{ lab_ipmi_user }}@mgmt-{{ item }} "racadm jobqueue delete -i JID_CLEARALL_FORCE"
+          with_items:
+            - "{{ dell_r650_nodes }}"
+          ignore_errors: true
+        
+        - name: Wait for R650 iDRACs to process job queue clearing
+          pause:
+            seconds: 30
+          
+        - name: Set PXE boot order for R650 using RACADM
+          shell: |
+            sshpass -p "{{ lab_ipmi_password }}" ssh -o StrictHostKeyChecking=no {{ lab_ipmi_user }}@mgmt-{{ item }} "racadm set BIOS.BiosBootSettings.BootSeq NIC.Integrated.1-1-1,HardDisk.List.1-1"
+          with_items:
+            - "{{ dell_r650_nodes }}"
+          ignore_errors: true
+          register: racadm_result
+          
+        - name: Create jobqueue to apply settings
+          shell: |
+            sshpass -p "{{ lab_ipmi_password }}" ssh -o StrictHostKeyChecking=no {{ lab_ipmi_user }}@mgmt-{{ item }} "racadm jobqueue create BIOS.Setup.1-1"
+          with_items:
+            - "{{ dell_r650_nodes }}"
+          ignore_errors: true
+      when: dell_r650_nodes | length > 0
+  
   when: dell_nodes | length > 0
   tags:
     - bootorder
